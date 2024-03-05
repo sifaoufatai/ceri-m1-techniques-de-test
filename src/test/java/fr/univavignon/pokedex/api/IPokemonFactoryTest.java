@@ -82,6 +82,8 @@ public class IPokemonFactoryTest {
 
         // Vérification que l'exception est bien lancée pour chaque attribut hors des limites
         assertThrows(IllegalArgumentException.class,
+                // Vérification que l'exception est bien lancée pour chaque attribut hors des limites
+
                 () -> pokemonFactory.createPokemon(1, 500, 60, 16, 10), "Attack value out of bounds");
         assertThrows(IllegalArgumentException.class,
                 () -> pokemonFactory.createPokemon(1, 500, 60, 10, 16), "Defense value out of bounds");

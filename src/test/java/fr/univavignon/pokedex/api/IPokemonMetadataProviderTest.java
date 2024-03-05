@@ -21,7 +21,7 @@ public class IPokemonMetadataProviderTest {
     @Test
     public void testGetPokemonMetadata() throws PokedexException {
         // Configuration du mock pour retourner des métadonnées spécifiques quand un index spécifique est demandé
-        when(mockMetadataProvider.getPokemonMetadata(0)).thenReturn(new PokemonMetadata(0, "Buibizare ", 126, 126, 90));
+        when(mockMetadataProvider.getPokemonMetadata(0)).thenReturn(new PokemonMetadata(0, "Buibizare", 126, 126, 90));
         when(mockMetadataProvider.getPokemonMetadata(133)).thenReturn(new PokemonMetadata(133, "Aquali ", 186, 168, 260));
 
 
