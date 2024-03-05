@@ -17,7 +17,7 @@ Il est fortement recommandé de mettre pour chaque classe de test une couche d�
 
 L’idée est de stocker des informations sur des Pokémons, dans un conteneur qu’est le Pokédex. Dans le cadre de ce TP nous nous contenterons de la première génération, soit 151 espèces.  
 Une espèce de Pokémon est décrite par des métadonnées communes à chaque individu de l’espèce à savoir :
-
+ // Simulant l'endurance
 - Un index numérique (allant de 0 à 150)
 - Un nom
 - Un niveau d’attaque
