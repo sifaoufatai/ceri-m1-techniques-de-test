@@ -19,18 +19,18 @@ public class IPokemonMetadataProviderTest {
     }
 
     @Test
+
     public void testGetPokemonMetadata() throws PokedexException {
         // Configuration du mock pour retourner des métadonnées spécifiques quand un index spécifique est demandé
-        when(mockMetadataProvider.getPokemonMetadata(0)).thenReturn(new PokemonMetadata(0, "Buibizare ", 126, 126, 90));
-        when(mockMetadataProvider.getPokemonMetadata(133)).thenReturn(new PokemonMetadata(133, "Aquali ", 186, 168, 260));
-
+        when(mockMetadataProvider.getPokemonMetadata(0)).thenReturn(new PokemonMetadata(0, "Buibizar", 126, 126, 90));
+        when(mockMetadataProvider.getPokemonMetadata(133)).thenReturn(new PokemonMetadata(133, "Aquali", 186, 168, 260));
 
         // Exécution de la méthode testée
         PokemonMetadata metadata = mockMetadataProvider.getPokemonMetadata(0);
 
         // Assertions pour vérifier le comportement attendu
         assertEquals(0, metadata.getIndex());
-        assertEquals("Buibizare ", metadata.getName());
+        assertEquals("Buibizar", metadata.getName());
         assertEquals(126, metadata.getAttack());
         assertEquals(126, metadata.getDefense());
         assertEquals(90, metadata.getStamina());
@@ -38,12 +38,12 @@ public class IPokemonMetadataProviderTest {
         // second exemple
         PokemonMetadata metadata2 = mockMetadataProvider.getPokemonMetadata(133);
         assertEquals(133, metadata2.getIndex());
-        assertEquals("Aquali", metadata2.getName());
+        assertEquals("Aquali", metadata2.getName()); // corrected name
         assertEquals(186, metadata2.getAttack());
         assertEquals(168, metadata2.getDefense());
         assertEquals(260, metadata2.getStamina());
-
     }
+
 
     @Test
     public void testGetPokemonMetadataThrowsExceptionWhenIndexIsInvalid() throws PokedexException {
