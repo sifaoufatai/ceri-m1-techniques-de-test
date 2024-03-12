@@ -23,5 +23,5 @@ workflows:
             - build-and-test
 
 orbs:
-  codecov: codecov/codecov@1.1.0
+  codecov: codecov/codecov@volatile
   maven: circleci/maven@1.1.0
