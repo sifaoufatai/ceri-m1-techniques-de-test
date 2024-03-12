@@ -8,7 +8,17 @@ jobs:
       - checkout
       - run:
           name: Run Unit Tests
-          command: mvn test -X
+          command: mvn test
+
+  upload-to-codecov:
+    docker:
+      - image: circleci/python:3.9
+    steps:
+      - checkout
+      - run:
+          name: Upload to Codecov
+          command: |
+            curl -s https://codecov.io/bash | bash -s -- -t $CODECOV_TOKEN
 
 workflows:
   version: 2
