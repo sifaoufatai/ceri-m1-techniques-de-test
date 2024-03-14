@@ -1,17 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>blondeauPierre</groupId>
-    <artifactId>TechniquesDeTest</artifactId>
-    <version>1.0</version>
+    <groupId>fr.univavignon.pokedex.api</groupId>
+    <artifactId>ceri-m1-techniques-de-test</artifactId>
+    <version>4.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>ceri-m1-techniques-de-test</name>
+    <url>http://maven.apache.org</url>
 
     <properties>
-        <maven.compiler.release>11</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -20,12 +22,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.12.1</version>
                 <configuration>
-                    <release>11</release>
+                    <release>11</release> <!-- Utiliser la version de release pour JDK 9 et au-delà -->
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -45,35 +46,55 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <argLine>@{argLine} -Xshare:off</argLine>
+                    <parallel>all</parallel>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <argLine>@{argLine} -Xshare:off</argLine>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
-
     <dependencies>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-collections4</artifactId>
-            <version>4.3</version>
-        </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.2</version>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.1</version>
             <scope>test</scope>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>3.12.4</version>
+            <version>5.9.0</version>
             <scope>test</scope>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.1</version>
-            <scope>test</scope>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.4</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
@@ -82,6 +103,8 @@
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.8.11</version>
         </dependency>
+
+
 
     </dependencies>
 

@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="TechniquesDeTest" />
+        <module name="ceri-m1-techniques-de-test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ceri-m1-techniques-de-test" target="17" />
+      <module name="TechniquesDeTest" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

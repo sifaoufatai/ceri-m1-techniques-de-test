@@ -1,46 +1,31 @@
 package fr.univavignon.pokedex.api;
 
-import fr.univavignon.pokedex.api.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+        import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+        import static org.junit.jupiter.api.Assertions.assertEquals;
+        import static org.junit.jupiter.api.Assertions.assertNotNull;
+        import static org.mockito.ArgumentMatchers.any;
+        import static org.mockito.Mockito.mock;
+        import static org.mockito.Mockito.when;
 
 public class IPokemonTrainerFactoryTest {
-    private IPokemonTrainerFactory mockIpokemonTrainer;
-    private IPokedexFactory mockPokedexFactory;
-    private Team mockteam ;
-    private IPokemonMetadataProvider metadataProvider;
-    private IPokemonFactory  pokemonFactory;
 
-    @BeforeEach
-    public void setUp() {
-        // Création de mocks pour les dépendances
-        mockIpokemonTrainer = mock(IPokemonTrainerFactory.class);
-        mockPokedexFactory= mock(IPokedexFactory.class);
-        mockteam= mock (Team.class);
-        metadataProvider = mock(IPokemonMetadataProvider.class);
-        pokemonFactory = mock(IPokemonFactory.class);
-    }
 
     @Test
-    public void testPokemonTrainercreateTrainer(){
-
-        String name = "Acquali";
-        // mock de IPokedex
-        IPokedex mockPokedex = mock(IPokedex.class);
-        //return pockedex  createPokedex
-        when(mockPokedexFactory.createPokedex(metadataProvider, pokemonFactory)).thenReturn(mockPokedex);
-
-        PokemonTrainer expectedTrainer = new PokemonTrainer(name, mockteam, mockPokedex);
-
-        when(mockIpokemonTrainer.createTrainer(name, mockteam, mockPokedexFactory)).thenReturn(expectedTrainer);
+    void testCreateTrainer() {
+        // Mock the dependencies
+        IPokedexFactory pokedexFactory = mock(IPokedexFactory.class);
+        IPokedex pokedex = mock(IPokedex.class);
 
 
-        PokemonTrainer actualTrainer = mockIpokemonTrainer.createTrainer(name, mockteam, mockPokedexFactory);
+        IPokemonTrainerFactory trainerFactory = mock(IPokemonTrainerFactory.class);
+        when(trainerFactory.createTrainer("fatai", Team.MYSTIC, pokedexFactory)).thenReturn(new PokemonTrainer("fatai", Team.MYSTIC, pokedex));
 
+        PokemonTrainer trainer = new PokemonTrainer("fatai", Team.MYSTIC, pokedex);
 
-        assertEquals(expectedTrainer, actualTrainer);
+        assertEquals("fatai", trainer.getName(), "The trainer's name should match the provided name.");
+        assertEquals(Team.MYSTIC, trainer.getTeam(), "The trainer's team should match the provided team.");
+
+        assertNotNull(trainer.getPokedex(), "The trainer should have a Pokedex.");
     }
 }
