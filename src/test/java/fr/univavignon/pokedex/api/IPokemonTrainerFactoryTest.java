@@ -1,31 +1,40 @@
 package fr.univavignon.pokedex.api;
 
-        import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
-        import static org.junit.jupiter.api.Assertions.assertEquals;
-        import static org.junit.jupiter.api.Assertions.assertNotNull;
-        import static org.mockito.ArgumentMatchers.any;
-        import static org.mockito.Mockito.mock;
-        import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class IPokemonTrainerFactoryTest {
+    private IPokemonMetadataProvider metadataProvider;
+    private IPokemonFactory pokemonFactory;
+    private IPokedexFactory pokedexFactory;
+    private IPokedex pokedex;
+    private IPokemonTrainerFactory pokemonTrainerFactory;
 
+    @Before
+    public void setUp() {
+        metadataProvider = mock(PokemonMetadataProvider.class);
+        pokemonFactory = mock(PokemonFactory.class);
+        pokedexFactory = mock(PokedexFactory.class);
+        pokedex = mock(Pokedex.class);
+        when(pokedexFactory.createPokedex(metadataProvider, pokemonFactory)).thenReturn(pokedex);
+
+        pokemonTrainerFactory = new PokemonTrainerFactory(metadataProvider, pokemonFactory);
+    }
 
     @Test
-    void testCreateTrainer() {
-        // Mock the dependencies
-        IPokedexFactory pokedexFactory = mock(IPokedexFactory.class);
-        IPokedex pokedex = mock(IPokedex.class);
+    public void testCreateTrainer() {
+        // Création d'un PokémonTrainer
+        String trainerName = "Ash";
+        Team trainerTeam = Team.VALOR;
+        PokemonTrainer trainer = pokemonTrainerFactory.createTrainer(trainerName, trainerTeam, pokedexFactory);
 
-
-        IPokemonTrainerFactory trainerFactory = mock(IPokemonTrainerFactory.class);
-        when(trainerFactory.createTrainer("fatai", Team.MYSTIC, pokedexFactory)).thenReturn(new PokemonTrainer("fatai", Team.MYSTIC, pokedex));
-
-        PokemonTrainer trainer = new PokemonTrainer("fatai", Team.MYSTIC, pokedex);
-
-        assertEquals("fatai", trainer.getName(), "The trainer's name should match the provided name.");
-        assertEquals(Team.MYSTIC, trainer.getTeam(), "The trainer's team should match the provided team.");
-
-        assertNotNull(trainer.getPokedex(), "The trainer should have a Pokedex.");
+        // Vérification des attributs du PokémonTrainer
+        Assert.assertEquals(trainerName, trainer.getName());
+        Assert.assertEquals(trainerTeam, trainer.getTeam());
+        Assert.assertEquals(pokedex, trainer.getPokedex());
     }
 }
