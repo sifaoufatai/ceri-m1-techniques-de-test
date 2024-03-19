@@ -2,11 +2,13 @@ package fr.univavignon.pokedex.api;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 
 public class IPokedexTest {
 
@@ -144,10 +146,23 @@ public class IPokedexTest {
         pokedex2.addPokemon(pokemon1);
         pokedex2.addPokemon(pokemon2);
         pokedex2.addPokemon(pokemon3);
-        // Tri des deux listes par ordre alphabétique des noms
-        Comparator<Pokemon> comparator = Comparator.comparing(Pokemon::getName);
+
+        // Utilisation du comparateur PokemonComparators.NAME
+        Comparator<Pokemon> comparator = PokemonComparators.NAME;
         pokemonList2.sort(comparator);
         List<Pokemon> sortedPokemons = pokedex2.getPokemons(comparator);
+        assertEquals(pokemonList2, sortedPokemons);
+
+        // Utilisation du comparateur PokemonComparators.INDEX
+        comparator = PokemonComparators.INDEX;
+        pokemonList2.sort(comparator);
+        sortedPokemons = pokedex2.getPokemons(comparator);
+        assertEquals(pokemonList2, sortedPokemons);
+
+        // Utilisation du comparateur PokemonComparators.CP
+        comparator = PokemonComparators.CP;
+        pokemonList2.sort(comparator);
+        sortedPokemons = pokedex2.getPokemons(comparator);
         assertEquals(pokemonList2, sortedPokemons);
     }
 }
