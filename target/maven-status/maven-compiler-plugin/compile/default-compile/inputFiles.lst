@@ -3,9 +3,14 @@
 /home/pourtoi/Bureau/Nouveau dossier/ceri-m1-techniques-de-test/src/main/java/fr/univavignon/pokedex/api/IPokemonFactory.java
 /home/pourtoi/Bureau/Nouveau dossier/ceri-m1-techniques-de-test/src/main/java/fr/univavignon/pokedex/api/IPokemonMetadataProvider.java
 /home/pourtoi/Bureau/Nouveau dossier/ceri-m1-techniques-de-test/src/main/java/fr/univavignon/pokedex/api/IPokemonTrainerFactory.java
+/home/pourtoi/Bureau/Nouveau dossier/ceri-m1-techniques-de-test/src/main/java/fr/univavignon/pokedex/api/Pokedex.java
 /home/pourtoi/Bureau/Nouveau dossier/ceri-m1-techniques-de-test/src/main/java/fr/univavignon/pokedex/api/PokedexException.java
+/home/pourtoi/Bureau/Nouveau dossier/ceri-m1-techniques-de-test/src/main/java/fr/univavignon/pokedex/api/PokedexFactory.java
 /home/pourtoi/Bureau/Nouveau dossier/ceri-m1-techniques-de-test/src/main/java/fr/univavignon/pokedex/api/Pokemon.java
 /home/pourtoi/Bureau/Nouveau dossier/ceri-m1-techniques-de-test/src/main/java/fr/univavignon/pokedex/api/PokemonComparators.java
+/home/pourtoi/Bureau/Nouveau dossier/ceri-m1-techniques-de-test/src/main/java/fr/univavignon/pokedex/api/PokemonFactory.java
 /home/pourtoi/Bureau/Nouveau dossier/ceri-m1-techniques-de-test/src/main/java/fr/univavignon/pokedex/api/PokemonMetadata.java
+/home/pourtoi/Bureau/Nouveau dossier/ceri-m1-techniques-de-test/src/main/java/fr/univavignon/pokedex/api/PokemonMetadataProvider.java
 /home/pourtoi/Bureau/Nouveau dossier/ceri-m1-techniques-de-test/src/main/java/fr/univavignon/pokedex/api/PokemonTrainer.java
+/home/pourtoi/Bureau/Nouveau dossier/ceri-m1-techniques-de-test/src/main/java/fr/univavignon/pokedex/api/PokemonTrainerFactory.java
 /home/pourtoi/Bureau/Nouveau dossier/ceri-m1-techniques-de-test/src/main/java/fr/univavignon/pokedex/api/Team.java

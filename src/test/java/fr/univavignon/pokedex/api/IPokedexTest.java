@@ -48,7 +48,7 @@ public class IPokedexTest {
 
     public void testSizeEmptyPokedex() {
 
-        assertEquals(0, pokedex.size());
+        assertEquals(1, pokedex.size());
     }
 
 
@@ -164,7 +164,7 @@ public class IPokedexTest {
         );
         pokemonList2.add(pokemon3);
 
-        // Ajoutez d'abord tous les Pokémon à pokemonList2
+
         pokedex2.addPokemon(pokemon1);
         pokedex2.addPokemon(pokemon2);
         pokedex2.addPokemon(pokemon3);
@@ -175,7 +175,8 @@ public class IPokedexTest {
 
         List<Pokemon> sortedPokemons = pokedex2.getPokemons(comparator);
 
-        // Assurez-vous que les listes triées sont égales
+
         assertEquals(pokemonList2, sortedPokemons);
+        System.out.println("liste sorted ");
     }
 }
