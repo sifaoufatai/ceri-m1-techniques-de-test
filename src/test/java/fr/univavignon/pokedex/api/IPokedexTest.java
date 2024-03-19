@@ -8,7 +8,9 @@ import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class IPokedexTest {
 
@@ -164,5 +166,28 @@ public class IPokedexTest {
         pokemonList2.sort(comparator);
         sortedPokemons = pokedex2.getPokemons(comparator);
         assertEquals(pokemonList2, sortedPokemons);
+    }
+
+
+
+    @Test
+    public void testGetPokemonMetadata() throws PokedexException {
+        PokemonMetadata expectedMetadata = new PokemonMetadata(12, "Bulbasaur", 45, 49, 49);
+        when(pokemonMetadataProvider.getPokemonMetadata(12)).thenReturn(expectedMetadata);
+
+        PokemonMetadata retrievedMetadata = pokedex.getPokemonMetadata(12);
+
+        assertEquals(expectedMetadata, retrievedMetadata);
+    }
+
+    @Test
+    public void testGetNonExistingPokemon() {
+        int nonExistingId = 1000;
+
+        PokedexException exception = assertThrows(PokedexException.class, () -> {
+            pokedex.getPokemon(nonExistingId);
+        });
+
+        assertEquals("Pokemon with ID " + nonExistingId + " not valid .", exception.getMessage());
     }
 }
