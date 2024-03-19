@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -31,10 +32,12 @@ public class IPokemonTrainerFactoryTest {
         String trainerName = "Ash";
         Team trainerTeam = Team.VALOR;
         PokemonTrainer trainer = pokemonTrainerFactory.createTrainer(trainerName, trainerTeam, pokedexFactory);
+        assertNotNull(trainer, "should not be null.");
 
         // Vérification des attributs du PokémonTrainer
         Assert.assertEquals(trainerName, trainer.getName());
         Assert.assertEquals(trainerTeam, trainer.getTeam());
         Assert.assertEquals(pokedex, trainer.getPokedex());
+        assertNotNull(trainer.getPokedex(), "lack of pokedex" );
     }
 }
