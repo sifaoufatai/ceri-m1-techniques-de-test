@@ -12,31 +12,18 @@ import java.util.List;
 public class IPokedexTest {
 
     private IPokedex pokedex;
-    private PokemonMetadata pokemonMetadata;
+
+
+    private IPokemonMetadataProvider pokemonMetadataProvider;
+    private IPokemonFactory pokemonFactory;
+
 
     @BeforeEach
     public void setUp() throws PokedexException {
-        pokedex = mock(IPokedex.class);
-        pokemonMetadata = new PokemonMetadata(1, "Bulbasaur", 45, 49, 49);
-    }
-
-    @Test
-    public void testSize() throws PokedexException {
-        when(pokedex.size()).thenReturn(1);
-        assertEquals(1, pokedex.size());
-    }
-
-    @Test
-
-    public void testSizeEmptyPokedex() {
-        when(pokedex.size()).thenReturn(0);
-        assertEquals(0, pokedex.size());
-    }
-
-
-    @Test
-    public void testAddPokemon() throws PokedexException {
-        Pokemon pokemon = new Pokemon(
+        pokemonMetadataProvider = mock(IPokemonMetadataProvider.class);
+        pokemonFactory = mock(IPokemonFactory.class);
+        pokedex = new Pokedex(pokemonMetadataProvider, pokemonFactory);
+        Pokemon pokemon1 = new Pokemon(
                 1, // index
                 "Bulbasaur", // name
                 45, //
@@ -48,15 +35,48 @@ public class IPokedexTest {
                 80, //
                 0.5
         );
-        when(pokedex.addPokemon(pokemon)).thenReturn(1);
-        assertEquals(1, pokedex.addPokemon(pokemon));
-        when(pokedex.addPokemon(pokemon)).thenReturn(1);
+        pokedex.addPokemon(pokemon1);
+    }
+
+    @Test
+    public void testSize() throws PokedexException {
+
+        assertEquals(1, pokedex.size());
+    }
+
+    @Test
+
+    public void testSizeEmptyPokedex() {
+
+        assertEquals(0, pokedex.size());
+    }
+
+
+    @Test
+    public void testAddPokemon() throws PokedexException {
+        Pokemon pokemon2 = new Pokemon(
+                2, // index
+                "Bulbasaur", // name
+                45, //
+                49, //
+                49, //
+                12, //
+                35, //
+                5, //
+                80, //
+                0.5
+        );
+
+
+        assertEquals(2, pokedex.addPokemon(pokemon2));
+
     }
 
     @Test
     public void testGetPokemon() throws PokedexException {
-        Pokemon expectedPokemon = new Pokemon(
-                1,
+
+        Pokemon actual = new Pokemon(
+                12,
                 "Bulbasaur",
                 45,
                 49,
@@ -67,12 +87,15 @@ public class IPokedexTest {
                 80,
                 0.5
         );
-        when(pokedex.getPokemon(1)).thenReturn(expectedPokemon);
-        assertEquals(expectedPokemon, pokedex.getPokemon(1));
+        pokedex.addPokemon(actual);
+        Pokemon expected = pokedex.getPokemon(12);
+
+        assertEquals(actual, expected);
     }
 
     @Test
     public void testGetPokemons() throws PokedexException {
+        Pokedex pokedex1 = new Pokedex(pokemonMetadataProvider, pokemonFactory);
         List<Pokemon> pokemonList = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             Pokemon pokemon = new Pokemon(
@@ -88,32 +111,71 @@ public class IPokedexTest {
                     0.5
             );
             pokemonList.add(pokemon);
+            pokedex1.addPokemon(pokemon);
         }
-        when(pokedex.getPokemons()).thenReturn(pokemonList);
-        assertEquals(pokemonList, pokedex.getPokemons());
+
+        assertEquals(pokemonList, pokedex1.getPokemons());
     }
 
     @Test
+
     public void testGetPokemonsSorted() throws PokedexException {
-        List<Pokemon> pokemonList = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            Pokemon pokemon = new Pokemon(
-                    i + 1,
-                    "Math",
-                    45,
-                    49,
-                    49,
-                    12,
-                    35,
-                    5,
-                    80,
-                    0.5
-            );
-            pokemonList.add(pokemon);
-        }
+        List<Pokemon> pokemonList2 = new ArrayList<>();
+        Pokedex pokedex2 = new Pokedex(pokemonMetadataProvider, pokemonFactory);
+
+        Pokemon pokemon1 = new Pokemon(
+                1,
+                "A",
+                45,
+                49,
+                49,
+                12,
+                35,
+                5,
+                80,
+                0.5
+        );
+        pokemonList2.add(pokemon1);
+
+        Pokemon pokemon2 = new Pokemon(
+                1,
+                "B",
+                45,
+                49,
+                49,
+                12,
+                35,
+                5,
+                80,
+                0.5
+        );
+        pokemonList2.add(pokemon2);
+        Pokemon pokemon3 = new Pokemon(
+                3,
+                "B",
+                45,
+                49,
+                49,
+                12,
+                35,
+                5,
+                80,
+                0.5
+        );
+        pokemonList2.add(pokemon3);
+
+        // Ajoutez d'abord tous les Pokémon à pokemonList2
+        pokedex2.addPokemon(pokemon1);
+        pokedex2.addPokemon(pokemon2);
+        pokedex2.addPokemon(pokemon3);
+
+        // Triez les deux listes par ordre alphabétique des noms
         Comparator<Pokemon> comparator = Comparator.comparing(Pokemon::getName);
-        pokemonList.sort(comparator);
-        when(pokedex.getPokemons(comparator)).thenReturn(pokemonList);
-        assertEquals(pokemonList, pokedex.getPokemons(comparator));
+        pokemonList2.sort(comparator);
+
+        List<Pokemon> sortedPokemons = pokedex2.getPokemons(comparator);
+
+        // Assurez-vous que les listes triées sont égales
+        assertEquals(pokemonList2, sortedPokemons);
     }
 }
