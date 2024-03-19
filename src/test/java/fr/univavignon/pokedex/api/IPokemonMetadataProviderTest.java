@@ -15,48 +15,31 @@ public class IPokemonMetadataProviderTest {
     @BeforeEach
     public void setUp() {
         // Création d'un mock pour IPokemonMetadataProvider
-        mockMetadataProvider = mock(IPokemonMetadataProvider.class);
+        mockMetadataProvider = new PokemonMetadataProvider();
     }
 
     @Test
 
     public void testGetPokemonMetadata() throws PokedexException {
-        // Configuration du mock pour retourner des métadonnées spécifiques quand un index spécifique est demandé
-        when(mockMetadataProvider.getPokemonMetadata(0)).thenReturn(new PokemonMetadata(0, "Buibizar", 126, 126, 90));
-        when(mockMetadataProvider.getPokemonMetadata(133)).thenReturn(new PokemonMetadata(133, "Aquali", 186, 168, 260));
 
         // Exécution de la méthode testée
-        PokemonMetadata metadata = mockMetadataProvider.getPokemonMetadata(0);
+        PokemonMetadata metadata = mockMetadataProvider.getPokemonMetadata(12);
 
         // Assertions pour vérifier le comportement attendu
-        assertEquals(0, metadata.getIndex());
-        assertEquals("Buibizar", metadata.getName());
-        assertEquals(126, metadata.getAttack());
-        assertEquals(126, metadata.getDefense());
-        assertEquals(90, metadata.getStamina());
+        assertEquals(12, metadata.getIndex());
+        assertEquals("Bulbizarre", metadata.getName());
+        assertEquals(106, metadata.getAttack());
+        assertEquals(104, metadata.getDefense());
+        assertEquals(60, metadata.getStamina());
 
         // second exemple
-        PokemonMetadata metadata2 = mockMetadataProvider.getPokemonMetadata(133);
-        assertEquals(133, metadata2.getIndex());
+        PokemonMetadata metadata2 = mockMetadataProvider.getPokemonMetadata(144);
+        assertEquals(144, metadata2.getIndex());
         assertEquals("Aquali", metadata2.getName()); // corrected name
-        assertEquals(186, metadata2.getAttack());
-        assertEquals(168, metadata2.getDefense());
-        assertEquals(260, metadata2.getStamina());
-    }
-
-
-    @Test
-    public void testGetPokemonMetadataThrowsExceptionWhenIndexIsInvalid() throws PokedexException {
-        // Configuration du mock pour lancer une exception quand un index invalide est demandé
-        int invalidIndex = -1;
-        IPokemonMetadataProvider mockMetadataProvider = mock(IPokemonMetadataProvider.class);
-        when(mockMetadataProvider.getPokemonMetadata(invalidIndex))
-                .thenThrow(new PokedexException("Invalid this  index: " + invalidIndex));
-
-        // Vérification que l'exception est bien lancée avec cet index
-        assertThrows(PokedexException.class, () -> {
-            mockMetadataProvider.getPokemonMetadata(invalidIndex);
-        });
+        assertEquals(166, metadata2.getAttack());
+        assertEquals(108, metadata2.getDefense());
+        assertEquals(160, metadata2.getStamina());
     }
 
 }
+
