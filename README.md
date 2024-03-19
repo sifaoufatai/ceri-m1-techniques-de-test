@@ -43,5 +43,5 @@ Si vous ne spécifiez pas de tag, le dernier commit à la date-heure de la fin d
 - Groupe: IA alternance
 
 ## Badges
-## [<img alt="CircleCI" src="https://dl.circleci.com/status-badge/img/circleci/7veZFPLNvPe6XJx1SEtF6r/WnpinczktUhxTtxZTvvkyU/tree/main.svg?style=svg"/>](https://dl.circleci.com/status-badge/redirect/circleci/7veZFPLNvPe6XJx1SEtF6r/WnpinczktUhxTtxZTvvkyU/tree/main)
+## [<img alt="CircleCI" src="https://dl.circleci.com/status-badge/img/circleci/7veZFPLNvPe6XJx1SEtF6r/WnpinczktUhxTtxZTvvkyU/tree/master.svg?style=svg"/>](https://dl.circleci.com/status-badge/redirect/circleci/7veZFPLNvPe6XJx1SEtF6r/WnpinczktUhxTtxZTvvkyU/tree/master)
 ## [![codecov](https://codecov.io/gh/sifaoufatai/ceri-m1-techniques-de-test/graph/badge.svg?token=JFGZ3U5G6D)](https://codecov.io/gh/sifaoufatai/ceri-m1-techniques-de-test)
