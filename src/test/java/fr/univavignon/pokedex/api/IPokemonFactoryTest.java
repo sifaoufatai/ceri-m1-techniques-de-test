@@ -38,10 +38,17 @@ public class IPokemonFactoryTest {
 
     @Test
     public void testCreatePokemonWithInvalidIndex() {
-        int index = 151;
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            pokemonFactory.createPokemon(index, 45, 49, 49, 12);
-        });
+        assertAll("Invalid indexes",
+                () -> assertThrows(IllegalArgumentException.class, () -> {
+                    pokemonFactory.createPokemon(-2, 45, 49, 49, 12); // Index -2, en dehors de l'intervalle
+                }),
+                () -> assertThrows(IllegalArgumentException.class, () -> {
+                    pokemonFactory.createPokemon(151, 45, 49, 49, 12); // Index 151, en dehors de l'intervalle
+                }),
+                () -> assertThrows(IllegalArgumentException.class, () -> {
+                    pokemonFactory.createPokemon(-1, 45, 49, 49, 12); // Index -1, en dehors de l'intervalle
+                })
+        );
     }
+
 }
