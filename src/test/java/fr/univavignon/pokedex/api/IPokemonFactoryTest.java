@@ -1,7 +1,6 @@
 package fr.univavignon.pokedex.api;
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
 
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,52 +8,40 @@ public class IPokemonFactoryTest {
 
     private IPokemonFactory pokemonFactory;
 
-
     @BeforeEach
     public void setUp() {
         pokemonFactory = new PokemonFactory();
-
     }
 
     @Test
-    public void testCreatePokemon() throws PokedexException {
-        // Configuration des métadonnées pour un Pokémon spécifique
-        int index = 0;
-        String name = "Aquali";
-        int attack = 0;
-        int defense = 0;
-        int stamina = 0;
-        int cp = 0;
-        int hp = 0;
-        int dust = 0;
-        int candy = 0;
-        double iv = 0.0;
-
-
-
+    public void testCreatePokemonWithValidIndex() {
+        int index = 1;
+        int cp = 45;
+        int hp = 49;
+        int dust = 49;
+        int candy = 12;
 
         Pokemon pokemon = pokemonFactory.createPokemon(index, cp, hp, dust, candy);
-        assertNotNull(pokemon);
 
-        // Assertions pour vérifier si le Pokémon créé possède correspond a ceux créer
-        assertAll("pokemon",
-                () -> assertEquals(index, pokemon.getIndex()),
-                () -> assertEquals(name, pokemon.getName()),
-                () -> assertEquals(attack, pokemon.getAttack()),
-                () -> assertEquals(defense, pokemon.getDefense()),
-                () -> assertEquals(stamina, pokemon.getStamina()),
-                () -> assertEquals(cp, pokemon.getCp()),
-                () -> assertEquals(hp, pokemon.getHp()),
-                () -> assertEquals(dust, pokemon.getDust()),
-                () -> assertEquals(candy, pokemon.getCandy()),
-                () -> assertEquals(iv, pokemon.getIv(), 0.01)//
-        );
+        assertNotNull(pokemon);
+        assertEquals(index, pokemon.getIndex());
+        assertEquals("Aquali", pokemon.getName());
+        assertEquals(0, pokemon.getAttack());
+        assertEquals(0, pokemon.getDefense());
+        assertEquals(0, pokemon.getStamina());
+        assertEquals(cp, pokemon.getCp());
+        assertEquals(hp, pokemon.getHp());
+        assertEquals(dust, pokemon.getDust());
+        assertEquals(candy, pokemon.getCandy());
+        assertEquals(0.0, pokemon.getIv());
     }
 
+    @Test
+    public void testCreatePokemonWithInvalidIndex() {
+        int index = 151;
 
-
-
-
-
-
+        assertThrows(IllegalArgumentException.class, () -> {
+            pokemonFactory.createPokemon(index, 45, 49, 49, 12);
+        });
+    }
 }
