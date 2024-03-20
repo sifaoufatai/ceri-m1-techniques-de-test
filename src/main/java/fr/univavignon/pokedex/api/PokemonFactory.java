@@ -5,7 +5,7 @@ public class PokemonFactory implements IPokemonFactory {
     @Override
     public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
         // Vérification des attributs
-        if(0< index || index > 150) throw new IllegalArgumentException("index  out of bound ");
+        if(0> index || index > 150) throw new IllegalArgumentException("index  out of bound ");
 
 
 
