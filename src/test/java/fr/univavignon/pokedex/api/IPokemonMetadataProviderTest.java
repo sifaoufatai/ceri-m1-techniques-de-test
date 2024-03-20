@@ -4,8 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 public class IPokemonMetadataProviderTest {
@@ -44,9 +43,15 @@ public class IPokemonMetadataProviderTest {
     @Test
     public void testInvalidPokemonIndex() {
         // Vérification que l'appel avec un index invalide génère une PokedexException
-        assertThrows(PokedexException.class, () -> {
-            mockMetadataProvider.getPokemonMetadata(-1);
-        });
+
+        assertAll("Invalid indexes",
+                () -> assertThrows(PokedexException.class, () -> {
+                    mockMetadataProvider.getPokemonMetadata(-1);
+                }),
+                () -> assertThrows(PokedexException.class, () -> {
+                    mockMetadataProvider.getPokemonMetadata(151);
+                })
+        );
     }
 
 
