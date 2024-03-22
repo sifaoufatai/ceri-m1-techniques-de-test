@@ -39,7 +39,7 @@ public class IPokemonMetadataProviderTest {
         assertEquals(108, metadata2.getDefense());
         assertEquals(160, metadata2.getStamina());
     }
-
+    //sout
     @Test
     public void testInvalidPokemonIndex() {
         // Vérification que l'appel avec un index invalide génère une PokedexException
