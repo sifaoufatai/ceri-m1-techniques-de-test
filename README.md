@@ -45,3 +45,4 @@ Si vous ne spécifiez pas de tag, le dernier commit à la date-heure de la fin d
 ## Badges
 ## [<img alt="CircleCI" src="https://dl.circleci.com/status-badge/img/circleci/7veZFPLNvPe6XJx1SEtF6r/WnpinczktUhxTtxZTvvkyU/tree/master.svg?style=svg"/>](https://dl.circleci.com/status-badge/redirect/circleci/7veZFPLNvPe6XJx1SEtF6r/WnpinczktUhxTtxZTvvkyU/tree/master)
 ## [![codecov](https://codecov.io/gh/sifaoufatai/ceri-m1-techniques-de-test/graph/badge.svg?token=JFGZ3U5G6D)](https://codecov.io/gh/sifaoufatai/ceri-m1-techniques-de-test)
+## [![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://sifaoufatai.github.io/ceri-m1-techniques-de-test/)
