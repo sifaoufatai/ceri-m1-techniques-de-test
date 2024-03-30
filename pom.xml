@@ -104,9 +104,9 @@
                     <configLocation>config/checkstyle/checkstyle.xml</configLocation>
                 </configuration>
             </plugin>
--->
 
-            <!-- checstyle-->
+
+            <!- checstyle-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
