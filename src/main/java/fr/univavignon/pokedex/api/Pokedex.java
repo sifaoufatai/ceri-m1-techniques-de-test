@@ -83,7 +83,9 @@ public class Pokedex implements IPokedex {
      */
     @Override
     public List<Pokemon> getPokemons() {
+        System.out.println("succes");
         return new ArrayList<>(pokemonList);
+
     }
 
     /**
