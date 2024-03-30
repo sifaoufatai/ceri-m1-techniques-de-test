@@ -98,7 +98,7 @@ public class Pokedex implements IPokedex {
     public List<Pokemon> getPokemons(Comparator<Pokemon> order) {
         List<Pokemon> sortedList = new ArrayList<>(pokemonList);
         sortedList.sort(order);
-        System.out.println(" sorted");
+        System.out.println(" ted");
         return sortedList;
     }
 
