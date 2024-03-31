@@ -45,7 +45,7 @@ public class IPokemonFactoryTest {
         assertEquals(202, rocketPockemonFactoryPokemon.getHp());
         assertEquals(5000, rocketPockemonFactoryPokemon.getDust());
         assertEquals(4, rocketPockemonFactoryPokemon.getCandy());
-
+        assertEquals("MISSINGNO", rocketPockemonFactoryPokemon.getName());
 /*
 attack = 1000;
 			defense = 1000;
@@ -62,6 +62,7 @@ attack = 1000;
         assertEquals(1000, rocketPockemonFactoryPokemon1.getDefense());
         assertEquals(1000, rocketPockemonFactoryPokemon1.getStamina());
         assertEquals(0.0, rocketPockemonFactoryPokemon1.getIv());
+        assertEquals("Ash's Pikachu", rocketPockemonFactoryPokemon1.getName());
     }
 
     @Test
